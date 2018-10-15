@@ -3,7 +3,8 @@
     "version": "0.1.6",
     "description": "A Node-RED node to send Pushover notification and Pushover glances",
     "dependencies": {
-        "request": "~2.87.0"
+        "request": "~2.87.0",
+        "streamifier": "^0.1.1"
     },
     "repository": {
         "type": "git",

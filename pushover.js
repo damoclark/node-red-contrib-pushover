@@ -2,6 +2,7 @@ module.exports = function(RED) {
     'use strict';
     const request = require('request');
     const fs = require('fs');
+    const streamifier = require("streamifier");
 
 
 
@@ -50,7 +51,9 @@ module.exports = function(RED) {
                 'token'      : node.keys.token,
                 'user'       : node.keys.userKey,
                 'message'    : msg.payload,
-                'attachment' : msg.image ? parseImageUrl() : null,
+                'attachment' : msg.image
+                  ? parseImageUrl()
+                  : streamifier.createReadStream(new Buffer(msg.attachment)),
                 'device'     : msg.device,
                 'url'        : msg.url,
                 'url_title'  : msg.url_title,
@@ -58,6 +61,7 @@ module.exports = function(RED) {
                 'sound'      : msg.sound,
                 'timestamp'  : msg.timestamp
             };
+            node.info(notification);
 
             for (let k in notification) {
                 if (!notification[k]) { delete notification[k]; }
@@ -132,7 +136,7 @@ module.exports = function(RED) {
                 if (glances[t]) {
                     glances[t] = String(glances[t]);
                     if (glances[t].length > 100) {
-                        node.error(`Pushover error: length of "msg.${t}" should less than 100`);
+                        node.error(`Pushover error: length of 'msg.${t}' should less than 100`);
                         glances[t] = glances[t].slice(0, 100);
                     }
                 }

@@ -22,6 +22,7 @@ Run the following command in your Node-RED user directory - typically `~/.node-r
 ### Optional Inputs
 - `msg.topic`: This will be used as the title of the notification if **Title** is not set
 - `msg.image`: The URL of the image in notification. Local file path or http(s) url
+- `msg.attachment`: Inline image. Array of bytes
 - `msg.url`: Can add an url to your notification
 - `msg.url_title`: Can set the title of the url
 - `msg.priority`: -2/-1/1/2, [see explain](https://pushover.net/api#priority)
