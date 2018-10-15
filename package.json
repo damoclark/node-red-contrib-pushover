@@ -3,7 +3,8 @@
     "version": "0.1.8",
     "description": "A Pushover API wrapper for Node-RED",
     "dependencies": {
-        "request": "~2.87.0"
+        "request": "~2.87.0",
+        "streamifier": "^0.1.1"
     },
     "repository": {
         "type": "git",

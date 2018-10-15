@@ -2,6 +2,7 @@ module.exports = function(RED) {
     'use strict';
     const request = require('request');
     const fs = require('fs');
+    const streamifier = require("streamifier");
 
 
 
@@ -80,7 +81,9 @@ module.exports = function(RED) {
                 'token'      : node.keys.token,
                 'user'       : node.keys.userKey,
                 'message'    : msg.payload,
-                'attachment' : msg.image ? parseImageUrl() : null,
+                'attachment' : msg.image
+                  ? parseImageUrl()
+                  : streamifier.createReadStream(new Buffer(msg.attachment)),
                 'device'     : msg.device,
                 'url'        : msg.url,
                 'url_title'  : msg.url_title,
